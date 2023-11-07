@@ -13,6 +13,6 @@ COPY poetry.lock pyproject.toml ./
 COPY ./ ./
 
 # Install dependencies
-RUN poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
+RUN poetry config virtualenvs.create false && poetry lock && poetry install --no-interaction --no-ansi
 
 CMD ["uvicorn", "--factory", "src.backend.langflow.main:create_app", "--host", "0.0.0.0", "--port", "7860", "--reload", "--log-level", "debug"]
